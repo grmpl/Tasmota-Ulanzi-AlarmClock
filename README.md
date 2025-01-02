@@ -22,6 +22,8 @@ Flashing Tasmota firmware on your device may potentially brick or damage the dev
 10. Check if Scripts are working correctly by running the commands in autoexec.be manually.
 11. If everything works, upload autoexec.be, too.
 
+Note: I disabled MQTT, as my broker was flooded with all results from tasmota.cmd. Neither loglevel, nor mute could disable these messages.
+
 ## Usage
 - Setting alarm time is only possible by setting Tasmota timers. You can set the timers by Web frontend or MQTT.
 - Timers 1-4 in Tasmota are available for setting an alarm time. Don't forget to activate timers in general and set timers to repeat if you want to use them more than once.
