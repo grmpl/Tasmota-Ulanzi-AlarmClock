@@ -11,7 +11,7 @@ Nevertheless it seems to be working stable. :-)
 Flashing Tasmota firmware on your device may potentially brick or damage the device. It is important to proceed with caution and to understand the risks involved before attempting to flash the firmware. Please note that any modifications to the device's firmware may void the manufacturer's warranty and may result in permanent damage to the device. It is strongly recommended to thoroughly research the flashing process and to follow instructions carefully. The user assumes all responsibility and risk associated with flashing the firmware.
 
 
-1. Flash Tasmota on your Ulanzi TC001
+1. Flash Tasmota on your Ulanzi TC001. (You should compile an own build with support for the real time clock in the Ulanzi: https://tasmota.github.io/docs/DS3231/, otherwise your alarm clock will need network to set the time after reset)
 2. Set Template and Module according to https://templates.blakadder.com/ulanzi_TC001.html
 4. Set Pixel-Number of the Display in Console: `Pixels 256` (Please note: This is only possible with ID=1 on GPIO32 with WSD2812)
 5. Stop processing of buttons in Tasmota: `SetOption73 1`
