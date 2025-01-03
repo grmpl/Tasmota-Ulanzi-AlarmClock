@@ -12,7 +12,7 @@ class Alarm3ClockFace: BaseClockFace
         super(self).init(clockfaceManager)
         self.matrixController.clear()
                 
-        self.timerstr = "Timer" + str(self.alarmnumber)
+        self.timerstr = "_Timer" + str(self.alarmnumber)
         # Check if timer is active
         var timerstatus = tasmota.cmd(self.timerstr,true)[self.timerstr]['Enable']
 
@@ -24,7 +24,7 @@ class Alarm3ClockFace: BaseClockFace
             self.alarmstatus = 0
         end
 
-        if int(tasmota.cmd("Mem1",true)['Mem1']) == self.alarmnumber
+        if int(tasmota.cmd("_Mem1",true)['Mem1']) == self.alarmnumber
             self.alarmstatus = self.alarmstatus | 2
         else 
             self.alarmstatus = self.alarmstatus & 13
@@ -61,7 +61,7 @@ class Alarm3ClockFace: BaseClockFace
             self.alarmstatus = self.alarmstatus & 11 
         end
 
-        if int(tasmota.cmd("Mem1",true)['Mem1']) == self.alarmnumber
+        if int(tasmota.cmd("_Mem1",true)['Mem1']) == self.alarmnumber
             self.alarmstatus = self.alarmstatus | 2
         else 
             self.alarmstatus = self.alarmstatus & 13

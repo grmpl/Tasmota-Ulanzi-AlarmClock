@@ -67,9 +67,9 @@ class ClockfaceManager
         # print(trigger)
         # print(msg)
         # If Alarm is active and no Snooze, activate Snooze, do nothing
-        if int(tasmota.cmd("Mem1",true)['Mem1']) > 0 && persist.member('snooze') == 0
+        if int(tasmota.cmd("_Mem1",true)['Mem1']) > 0 && persist.member('snooze') == 0
             log("Snooze activated by button_prev",2)
-            tasmota.cmd("buzzer 0",true)
+            tasmota.cmd("_buzzer 0",true)
             persist.snooze=1
             persist.save()
             self.snoozerunning = self.snoozetime
@@ -87,15 +87,15 @@ class ClockfaceManager
     def on_button_action(value, trigger, msg)
                
         # If Alarm is active handle button different
-        var alarmset = int(tasmota.cmd("Mem1",true)['Mem1'])
+        var alarmset = int(tasmota.cmd("_Mem1",true)['Mem1'])
         if alarmset > 0 && value == 3 #Hold - switch off Alarm
             log("ClockfaceManager: Alarm switched off",2)
-            tasmota.cmd("buzzer 1",true)
-            tasmota.cmd("Mem1 0",true)
+            tasmota.cmd("_buzzer 1",true)
+            tasmota.cmd("_Mem1 0",true)
             #self.redraw()
         elif  alarmset > 0 && persist.member('snooze') == 0 #else Snooze on
             log("ClockfaceManager: Snooze activated by button_action",2)
-            tasmota.cmd("buzzer 0",true)
+            tasmota.cmd("_buzzer 0",true)
             persist.snooze=1
             persist.save()
             self.snoozerunning = self.snoozetime
@@ -113,9 +113,9 @@ class ClockfaceManager
         # print(trigger)
         # print(msg)
         # If Alarm is active and no Snooze, activate Snooze
-        if int(tasmota.cmd("Mem1",true)['Mem1']) > 0 && persist.member('snooze') == 0
+        if int(tasmota.cmd("_Mem1",true)['Mem1']) > 0 && persist.member('snooze') == 0
             log("ClockfaceManager: Snooze activated by button_next",2)
-            tasmota.cmd("buzzer 0",true)
+            tasmota.cmd("_buzzer 0",true)
             persist.snooze=1
             persist.save()
             self.snoozerunning = self.snoozetime
@@ -134,7 +134,7 @@ class ClockfaceManager
 
 
         # Check for Alarm
-        var alarmset = int(tasmota.cmd("Mem1",true)['Mem1'])
+        var alarmset = int(tasmota.cmd("_Mem1",true)['Mem1'])
         # Alarm set and no Snooze
         if alarmset > 0 && persist.member('snooze') == 0
             log("ClockfaceManager: Alarm active, beeping",3)

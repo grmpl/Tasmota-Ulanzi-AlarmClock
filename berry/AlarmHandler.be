@@ -23,12 +23,12 @@ class AlarmHandler
 
         if self.beepindex < self.beeplist.size()
             buzzerattr = str(self.beeplist[self.beepindex]) +",1"
-            tasmota.cmd("buzzer "+buzzerattr, true)
+            tasmota.cmd("_buzzer "+buzzerattr, true)
             self.beepindex += 1
         # Alarm off
         else
             self.beepindex = 0
-            tasmota.cmd("Mem1 0", true)
+            tasmota.cmd("_Mem1 0", true)
             log("AlarmHandler: Timeout Alarm",2)
             # Todo: Message on MQTT and Telegram
         end

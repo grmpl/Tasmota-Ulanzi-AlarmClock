@@ -9,8 +9,8 @@ class Weather
 
     def init()
         self.cl = webclient()
-        self.latitude = tasmota.cmd("latitude")["Latitude"]
-        self.longitude = tasmota.cmd("longitude")["Longitude"]
+        self.latitude = tasmota.cmd("_latitude")["Latitude"]
+        self.longitude = tasmota.cmd("_longitude")["Longitude"]
         log("Using latitude: " + str(self.latitude) + " longitude: " + str(self.longitude),2)
         var url = "https://api.open-meteo.com/v1/forecast?latitude=" + str(self.latitude) + "&longitude=" + str(self.longitude) + "&current_weather=true&timezone=auto"
         self.cl.begin(url)
