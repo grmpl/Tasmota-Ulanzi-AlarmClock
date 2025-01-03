@@ -20,7 +20,9 @@ Flashing Tasmota firmware on your device may potentially brick or damage the dev
 8. Set long button press to your needs, e.g. 2 Seconds: `setoption32 20` (Please note: This will also decrease the time for setting reset to 20 seconds)
 9. Upload all the files in berry-directory to Tasmota filesystem. Do not upload autoexec.be yet!
 10. Check if Scripts are working correctly by running the commands in autoexec.be manually.
-11. If everything works, upload autoexec.be, too.
+11. Add the following rule to tasmota: `ON Clock#Timer=1 DO Mem1 1 ENDON ON Clock#Timer=2 DO Mem1 2 ENDON ON Clock#Timer=3 DO Mem1 3 ENDON  ON Clock#Timer=4 DO Mem1 4 ENDON ` 
+12. If everything works, upload autoexec.be from root directory.
+
 
 Note: I disabled MQTT, as my broker was flooded with all results from tasmota.cmd. Neither loglevel, nor mute could disable these messages.
 
