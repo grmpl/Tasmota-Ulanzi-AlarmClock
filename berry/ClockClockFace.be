@@ -80,7 +80,7 @@ class ClockClockFace: BaseClockFace
         # Display alarm
                
         for i:1..4
-            var timerstr = "Timer"+str(i)
+            var timerstr = "_Timer"+str(i)
             var timeract = tasmota.cmd(timerstr,true)[timerstr]['Enable']
             
             if persist.member('snooze') == 1 && ((self.clockfaceManager.snoozerunning*4/self.clockfaceManager.snoozetime)+1 >= i)
