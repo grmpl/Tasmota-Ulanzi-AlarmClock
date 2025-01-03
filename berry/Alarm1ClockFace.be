@@ -12,9 +12,9 @@ class Alarm1ClockFace: BaseClockFace
         super(self).init(clockfaceManager)
         self.matrixController.clear()
                 
-        self.timerstr = "_Timer" + str(self.alarmnumber)
+        self.timerstr = "Timer" + str(self.alarmnumber)
         # Check if timer is active
-        var timerstatus = tasmota.cmd(self.timerstr,true)[self.timerstr]['Enable']
+        var timerstatus = tasmota.cmd("_"+self.timerstr,true)[self.timerstr]['Enable']
 
 
         # Init set the bits correctly
@@ -41,9 +41,9 @@ class Alarm1ClockFace: BaseClockFace
     end
 
     def handleActionButton()
-        var enable = tasmota.cmd(self.timerstr,true)[self.timerstr]['Enable']
+        var enable = tasmota.cmd("_"+self.timerstr,true)[self.timerstr]['Enable']
         self.alarmstatus=self.alarmstatus ^ 1
-        tasmota.cmd(self.timerstr+" {\"Enable\":" + str((self.alarmstatus & 1)) + "}",true)
+        tasmota.cmd("_"+self.timerstr+" {\"Enable\":" + str((self.alarmstatus & 1)) + "}",true)
         log("AlarmClockFace: Set timer inactive",2)
         self.clockfaceManager.update_brightness_from_sensor()
         self.clockfaceManager.redraw()
@@ -53,7 +53,7 @@ class Alarm1ClockFace: BaseClockFace
         self.matrixController.clear()
         self.matrixController.change_font('Glance')
 
-        var timerstatus = tasmota.cmd(self.timerstr,true)[self.timerstr]
+        var timerstatus = tasmota.cmd("_"+self.timerstr,true)[self.timerstr]
 
         if persist.member('snooze') == 1
             self.alarmstatus = self.alarmstatus | 4
